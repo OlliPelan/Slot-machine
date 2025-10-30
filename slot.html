@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Slot Machine</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      background: #1a1a2e;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      width: 90vw;
+      max-width: 400px;
+    }
+
+    .bet-controls {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 20px 0;
+      align-items: center;
+    }
+
+    .bet-btn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .bet-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .bet-display {
+      font-size: 2rem;
+      color: #ffd700;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px 20px;
+      border: 2px solid #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎰 SLOT MACHINE</h1>
+    <div class="stats">
+      <p>💰 Credits: <span id="credits">50</span></p>
+      <p>🎯 Spins: <span id="spins">0</span>/10</p>
+    </div>
+
+    <div class="bet-controls">
+      <button class="bet-btn" id="betDownBtn" onclick="changeBet(-1)">-1</button>
+      <div class="bet-display"><span id="betAmount">10</span></div>
+      <button class="bet-btn" id="betUpBtn" onclick="changeBet(1)">+1</button>
+    </div>
+
+    <button class="bet-btn" style="width:100%; font-size:1.8rem;" onclick="simulateSpin()">SPIN!</button>
+  </div>
+
+  <script>
+    let credits = 50;
+    let betAmount = 10;
+
+    function updateDisplay() {
+      document.getElementById('credits').textContent = credits;
+      document.getElementById('betAmount').textContent = betAmount;
+
+      // automatically cap bet if credits lower than betAmount
+      if (credits < betAmount) {
+        betAmount = credits > 0 ? credits : 1;
+        document.getElementById('betAmount').textContent = betAmount;
+      }
+    }
+
+    function changeBet(change) {
+      const newBet = betAmount + change;
+      if (newBet >= 1 && newBet <= credits) {
+        betAmount = newBet;
+      } else if (newBet > credits) {
+        betAmount = credits;
+      } else if (newBet < 1) {
+        betAmount = 1;
+      }
+      updateDisplay();
+    }
+
+    function simulateSpin() {
+      if (credits <= 0) return;
+      credits -= betAmount;
+      updateDisplay();
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
