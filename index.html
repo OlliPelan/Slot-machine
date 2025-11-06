@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="screen-orientation" content="portrait">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="screen-orientation" content="portrait" />
     <title>Slot Machine</title>
     <style>
         * {
@@ -28,7 +28,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: url('https://cdn.abacus.ai/images/2671e96c-6992-413a-bb27-e941cd450336.png') center center no-repeat;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,11 +37,10 @@
         }
 
         .container {
-            background: #1a1a2e;
+            background: transparent;
             border-radius: 30px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             width: 100vw;
             height: 100vh;
             max-width: 100%;
@@ -62,22 +62,25 @@
         }
 
         .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 10px 10px 10px;
+            padding: 0 5vw;
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #722f37 0%, #4b1f24 100%); /* wine red gradient */
             color: white;
-            padding: 15px;
+            padding: 10px;
             border-radius: 15px;
             font-size: 6vw;
             font-weight: 900;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             border: 3px solid rgba(255,255,255,0.2);
             transition: all 0.3s;
+            min-width: 40vw;
+            max-width: 45vw;
+            text-align: center;
         }
 
         .stat-box.gameover {
@@ -99,13 +102,14 @@
 
         .slot-machine {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             gap: 3vw;
-            margin: 15px 0;
-            padding: 15px 10px;
+            margin: 0 10px 15px 10px;
+            padding: 15px 10px 0 10px;
             background: rgba(0,0,0,0.3);
             border-radius: 20px;
             border: 4px solid rgba(255,215,0,0.3);
+            position: relative;
         }
 
         .reel {
@@ -119,9 +123,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16vw;
+            font-size: 12vw;
             font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4), inset 0 0 20px rgba(255,215,0,0.2);
+            position: relative;
         }
 
         .reel.spinning {
@@ -132,6 +137,24 @@
             0% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-8px) scale(0.95); }
             100% { transform: translateY(0) scale(1); }
+        }
+
+        #creditsBox {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            min-width: 40vw;
+            max-width: 45vw;
+            margin: 0;
+        }
+
+        #spinsBox {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            min-width: 40vw;
+            max-width: 45vw;
+            margin: 0;
         }
 
         .bet-controls {
@@ -326,7 +349,7 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
-        
+
         .firework {
             position: fixed;
             width: 8px;
@@ -405,92 +428,22 @@
         #closePaytableBtn:active {
             transform: scale(0.95);
         }
-
-        @media (orientation: landscape) {
-            .container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .stat-box {
-                font-size: 3vh;
-            }
-            
-            .stat-value {
-                font-size: 5vh;
-            }
-        }
-
-        @media (min-width: 600px) {
-            .container {
-                max-width: 500px;
-                max-height: 95vh;
-                border-radius: 30px;
-            }
-            
-            .stat-box {
-                font-size: 1rem;
-            }
-            
-            .stat-value {
-                font-size: 1.6rem;
-            }
-            
-            .bet-btn {
-                font-size: 1.5rem;
-            }
-            
-            .bet-value {
-                font-size: 1.5rem;
-            }
-            
-            #spinBtn, #playAgainBtn {
-                font-size: 1.8rem;
-            }
-
-            #paytableBtn {
-                font-size: 1.1rem;
-            }
-            
-            .message {
-                font-size: 1.2rem;
-            }
-
-            .message.gameover {
-                font-size: 2rem;
-            }
-            
-            .paytable h3 {
-                font-size: 1.5rem;
-            }
-
-            .paytable-row {
-                font-size: 1.1rem;
-            }
-
-            #closePaytableBtn {
-                font-size: 1.2rem;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container" id="container">
-        <div class="stats">
+        <div class="slot-machine">
             <div class="stat-box" id="creditsBox">
                 <span class="stat-label">💰 CREDITS</span>
                 <span class="stat-value" id="credits">50</span>
             </div>
+            <div class="reel" id="reel1">🍒</div>
+            <div class="reel" id="reel2">🍋</div>
+            <div class="reel" id="reel3">🍊</div>
             <div class="stat-box" id="spinsBox">
                 <span class="stat-label">🎯 SPINS</span>
                 <span class="stat-value"><span id="spins">0</span>/10</span>
             </div>
-        </div>
-
-        <div class="slot-machine">
-            <div class="reel" id="reel1">🍒</div>
-            <div class="reel" id="reel2">🍋</div>
-            <div class="reel" id="reel3">🍊</div>
         </div>
 
         <div class="bet-controls">
@@ -504,7 +457,7 @@
 
         <button id="spinBtn" onclick="spin()">SPIN!</button>
         <button id="playAgainBtn" onclick="playAgain()">PLAY AGAIN?</button>
-        
+
         <div class="message" id="message"></div>
 
         <button id="paytableBtn" onclick="showPaytable()">💎 PAYTABLE 💎</button>
@@ -560,16 +513,16 @@
                 initAudio();
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
-                
+
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
-                
+
                 oscillator.frequency.value = frequency;
                 oscillator.type = type;
-                
+
                 gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
                 gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-                
+
                 oscillator.start(audioContext.currentTime);
                 oscillator.stop(audioContext.currentTime + duration);
             } catch (e) {
@@ -628,7 +581,7 @@
         function getWeightedSymbol() {
             const totalWeight = weights.reduce((sum, w) => sum + w, 0);
             let random = Math.random() * totalWeight;
-            
+
             for (let i = 0; i < symbols.length; i++) {
                 random -= weights[i];
                 if (random <= 0) {
@@ -641,7 +594,7 @@
         function createFirework(x, y) {
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffd700'];
             const particles = 30;
-            
+
             for (let i = 0; i < particles; i++) {
                 const firework = document.createElement('div');
                 firework.className = 'firework';
@@ -649,32 +602,32 @@
                 firework.style.top = y + 'px';
                 firework.style.background = colors[Math.floor(Math.random() * colors.length)];
                 document.body.appendChild(firework);
-                
+
                 const angle = (Math.PI * 2 * i) / particles;
                 const velocity = 2 + Math.random() * 3;
                 const vx = Math.cos(angle) * velocity;
                 const vy = Math.sin(angle) * velocity;
-                
+
                 let posX = x;
                 let posY = y;
                 let life = 100;
-                
+
                 const animate = () => {
                     posX += vx;
                     posY += vy;
                     life -= 3;
-                    
+
                     firework.style.left = posX + 'px';
                     firework.style.top = posY + 'px';
                     firework.style.opacity = life / 100;
-                    
+
                     if (life > 0) {
                         requestAnimationFrame(animate);
                     } else {
                         firework.remove();
                     }
                 };
-                
+
                 animate();
             }
         }
@@ -691,7 +644,6 @@
         }
 
         function setGameOverState() {
-            // Gray out all buttons and stats
             document.getElementById('creditsBox').classList.add('gameover');
             document.getElementById('spinsBox').classList.add('gameover');
             document.getElementById('betDownBtn').classList.add('gameover');
@@ -702,7 +654,6 @@
         }
 
         function clearGameOverState() {
-            // Remove gray state from all buttons and stats
             document.getElementById('creditsBox').classList.remove('gameover');
             document.getElementById('spinsBox').classList.remove('gameover');
             document.getElementById('betDownBtn').classList.remove('gameover');
@@ -716,29 +667,23 @@
             const container = document.getElementById('container');
             const messageEl = document.getElementById('message');
             const playAgainBtn = document.getElementById('playAgainBtn');
-            
-            // Shake animation
+
             container.classList.add('shake');
             setTimeout(() => container.classList.remove('shake'), 500);
-            
-            // Haptic shake
+
             haptic('shake');
-            
-            // Game over sound
+
             playGameOverSound();
-            
-            // Display game over message
+
             messageEl.className = 'message gameover';
             if (reason === 'credits') {
                 messageEl.textContent = '💀 GAME OVER! 💀';
             } else {
                 messageEl.textContent = '💀 10 SPINS! GAME OVER! 💀';
             }
-            
-            // Gray out buttons
+
             setGameOverState();
-            
-            // Fade in play again button after 1 second
+
             setTimeout(() => {
                 playAgainBtn.classList.add('show');
             }, 1000);
@@ -747,24 +692,20 @@
         function playAgain() {
             haptic('medium');
             playResetSound();
-            
-            // Reset game
+
             credits = 50;
             totalSpins = 0;
             betAmount = 10;
             document.getElementById('betAmount').textContent = betAmount;
             updateDisplay();
-            
-            // Hide play again button
+
             const playAgainBtn = document.getElementById('playAgainBtn');
             playAgainBtn.classList.remove('show');
-            
-            // Clear message
+
             const messageEl = document.getElementById('message');
             messageEl.textContent = '';
             messageEl.className = 'message';
-            
-            // Clear game over state
+
             clearGameOverState();
         }
 
@@ -773,13 +714,11 @@
                 return;
             }
 
-            // Auto-adjust bet if credits are lower than bet amount
             if (credits < betAmount) {
                 betAmount = credits;
                 document.getElementById('betAmount').textContent = betAmount;
             }
 
-            // Check game over BEFORE spinning
             if (totalSpins >= 10) {
                 gameOver('spins');
                 return;
@@ -828,13 +767,13 @@
             }
 
             const winAmount = calculateWin(results);
-            
+
             if (winAmount > 0) {
                 credits += winAmount;
-                
+
                 const messageEl = document.getElementById('message');
                 messageEl.className = 'message win';
-                
+
                 if (results[0] === '7️⃣' && results[1] === '7️⃣' && results[2] === '7️⃣') {
                     messageEl.textContent = `🎊 JACKPOT! ${winAmount}! 🎊`;
                     playJackpotSound();
@@ -864,26 +803,24 @@
                 const payout = payouts[results[0]];
                 return payout ? payout * betAmount : 0;
             }
-            
+
             if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
                 return Math.floor(betAmount * 1.5);
             }
-            
+
             return 0;
         }
 
         function updateDisplay() {
             document.getElementById('credits').textContent = credits;
             document.getElementById('spins').textContent = totalSpins;
-            
-            // Auto-adjust bet if credits are lower than current bet
+
             if (credits < betAmount && credits > 0) {
                 betAmount = credits;
                 document.getElementById('betAmount').textContent = betAmount;
             }
         }
 
-        // Lock orientation to portrait on mobile
         if (screen.orientation && screen.orientation.lock) {
             screen.orientation.lock('portrait').catch(() => {});
         }
